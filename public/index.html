@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>Make new User</h1>
+    <p id="error"></p>
+    <p id="delete"></p>
+    <form id="signup-table">
+      <div class="form-group">
+        <label for="InputId">ID</label>
+        <input
+          id="InputID"
+          type="number"
+          class="form-control"
+          placeholder="Enter ID"
+        />
+        <label for="InputName">Name</label>
+        <input
+          id="InputName"
+          type="text"
+          class="form-control"
+          placeholder="Enter Name"
+        />
+        <label for="InputAge">Age</label>
+        <input
+          id="InputAge"
+          type="number"
+          class="form-control"
+          placeholder="Enter Age"
+        />
+        <label for="InputJob">Job</label>
+        <input
+          id="InputJob"
+          type="text"
+          class="form-control"
+          placeholder="Enter Job"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Signup</button>
+      <button type="update" class="btn btn-light">Update</button>
+    </form>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          onclick="deleteUser()"
+        >
+          Delete
+        </button>
+      </div>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Input ID"
+        aria-label=""
+        aria-describedby="basic-addon1"
+        id="DeleteID"
+      />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <button
+          class="btn btn-outline-info"
+          type="button"
+          onclick="findUsers()"
+        >
+          Find User
+        </button>
+      </div>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Input ID"
+        aria-label=""
+        aria-describedby="basic-addon1"
+        id="FindID"
+      />
+    </div>
+    <p id="showUser"></p>
+
+    <input
+      type="button"
+      class="btn btn-success"
+      onclick="tableFromJson()"
+      value="Create Table from JSON data"
+    />
+
+    <p id="showData" class="table table-bordered"></p>
+    <script src="index.js"></script>
+  </body>
+</html>
