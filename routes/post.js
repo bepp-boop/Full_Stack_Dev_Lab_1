@@ -1,5 +1,6 @@
 const express = require('express');
-const User = require('../model/User')
+const { db } = require('../model/User');
+const User = require('../model/User');
 const router = express.Router();
 const { newUserValidation } = require('../validation');
 
@@ -16,17 +17,28 @@ router.post('/create', async (req, res) => {
         return res.status(404).json({ error: error.details[0].message });
     }
 
-    const emailExist = await User.findOne({ ID: req.body.id });
-
-    if (emailExist) {
-        return res.status(400).json({ error: 'ID exists' });
+    if (!req.body.name) {
+        return res.status(400).json({ error: "Name is undefined" })
     }
+    if (!req.body.age) {
+        return res.status(400).json({ error: "Age is undefined" })
+    }
+    if (!req.body.job) {
+        return res.status(400).json({ error: "Job is undefined" })
 
+    }
+    let newID = undefined;
+    try {
+        newID = (await db.collection('counters').findOne()).seq + 1
+    }
+    catch (error) {
+        if (!newID) newID == 1
+    }
     const user = new User({
         Name: req.body.name,
         Age: req.body.age,
         Job: req.body.job,
-        ID: req.body.id,
+        ID: newID,
 
     })
     try {
@@ -55,13 +67,13 @@ router.patch('/create/:id', async (req, res) => {
             return res.status(400).json({ error: 'ID not found' });
         }
         if (req.body.name) {
-            patchUser.name = req.body.name;
+            patchUser.Name = req.body.name;
         }
         if (req.body.age) {
-            patchUser.age = req.body.age;
+            patchUser.Age = req.body.age;
         }
         if (req.body.job) {
-            patchUser.job = req.body.job;
+            patchUser.Job = req.body.job;
         }
         await patchUser.save();
         res.send(patchUser);

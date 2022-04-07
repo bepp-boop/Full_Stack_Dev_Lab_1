@@ -1,5 +1,6 @@
 //form
 const signupForm = document.querySelector('#signup-table')
+const signupForm1 = document.querySelector('#signup-table');///HAHAHHA 
 
 // Signup input
 const signupID = document.querySelector('#InputID');
@@ -19,7 +20,6 @@ signupForm.addEventListener('submit', e => {
         name: signUpName.value,
         age: signUpAge.value,
         job: signUpJob.value,
-        id: signupID.value
     };
 
     fetch("/api/user/create", {
@@ -41,16 +41,15 @@ signupForm.addEventListener('submit', e => {
         });
 })
 
-signupForm.addEventListener('update', e => {
+signupForm1.addEventListener('submit', e => {
     e.preventDefault();
     const signUpDetails = {
         name: signUpName.value,
         age: signUpAge.value,
         job: signUpJob.value,
-        id: signupID.value
     };
 
-    fetch(`/api/user/create/${id}`, {
+    fetch(`/api/user/create/${signupID.value}`, {
         method: "PATCH",
         headers: {
             'Content-Type': 'application/json'
