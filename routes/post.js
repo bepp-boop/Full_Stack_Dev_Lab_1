@@ -17,9 +17,6 @@ router.post('/create', async (req, res) => {
         return res.status(404).json({ error: error.details[0].message });
     }
 
-    if (!req.body.name) {
-        return res.status(400).json({ error: "Name is undefined" })
-    }
     if (!req.body.age) {
         return res.status(400).json({ error: "Age is undefined" })
     }
