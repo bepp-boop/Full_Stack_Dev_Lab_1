@@ -63,17 +63,20 @@ router.patch('/create/:id', async (req, res) => {
         if (!patchUser) {
             return res.status(400).json({ error: 'ID not found' });
         }
-        if (req.body.name) {
-            patchUser.Name = req.body.name;
+        else {
+            if (req.body.name) {
+                patchUser.Name = req.body.name;
+            }
+            if (req.body.age) {
+                patchUser.Age = req.body.age;
+            }
+            if (req.body.job) {
+                patchUser.Job = req.body.job;
+            }
+            await patchUser.save();
+            res.send(patchUser);
         }
-        if (req.body.age) {
-            patchUser.Age = req.body.age;
-        }
-        if (req.body.job) {
-            patchUser.Job = req.body.job;
-        }
-        await patchUser.save();
-        res.send(patchUser);
+
     }
     catch {
         res.status(404)
